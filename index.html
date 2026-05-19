@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mullilaskja Mäng</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-container">
+        <div id="start-screen" class="screen">
+            <h1>MULLILASKJA SEIKLUS</h1>
+            <p>Sisesta oma nimi ja alusta mängu!</p>
+            <input type="text" id="player-name-input" placeholder="Sinu nimi..." maxlength="15">
+            <button id="start-btn">ALUSTA MÄNGU</button>
+        </div>
+
+        <div id="game-screen" class="screen hidden">
+            <div class="canvas-container">
+                <canvas id="gameCanvas" width="500" height="600"></canvas>
+            </div>
+            
+            <div class="sidebar">
+                <h2>MÄNGIJA: <span id="display-name">-</span></h2>
+                <hr>
+                <div class="stat-box">
+                    <p>Punktid:</p>
+                    <span id="score-display">0</span>
+                </div>
+                <div class="stat-box">
+                    <p>Aeg:</p>
+                    <span id="timer-display">180</span>s
+                </div>
+                <div class="stat-box">
+                    <p>Tase (Level):</p>
+                    <span id="level-display">1</span>
+                </div>
+                
+                <div class="achievements">
+                    <h3>Saavutused:</h3>
+                    <ul id="achievement-list">
+                        <li id="ach-first" class="locked">Esimesed punktid (10p)</li>
+                        <li id="ach-combo" class="locked">Suurpuhastus (Lõhka 5+ mulli)</li>
+                        <li id="ach-level2" class="locked">Taseme tšempion (Level 2)</li>
+                        <li id="ach-level4" class="locked">Mulli-Pro (Level 4)</li>
+                        <li id="ach-score500" class="locked">Skoorikunn (500 punkti)</li>
+                        <li id="ach-speedrun" class="locked">Kiirustaja (200p kui aeg > 150s)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-over-screen" class="screen hidden">
+            <h1 class="game-over-title">MÄNG LÄBI!</h1>
+            <p>Hea töö, <span id="final-name"></span>!</p>
+            <div class="final-score-box">
+                <p>Sinu lõplik skoor: <strong id="final-score">0</strong></p>
+                <p>Jõudsid tasemele: <strong id="final-level">1</strong></p>
+            </div>
+            <button id="restart-btn">MÄNGI UUESTI</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

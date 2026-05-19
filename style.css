@@ -1,0 +1,273 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #111827;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Fikseeritud suurusega mängu ümbris - NEUTRAALNE VALGE/HALL ÄÄRIS */
+.game-container {
+    width: 800px;
+    height: 600px;
+    background-color: #1f2937;
+    border: 3px solid #f3f4f6;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Alustamise ja Lõpetamise vaated */
+#start-screen, #game-over-screen {
+    background: radial-gradient(circle, #374151 0%, #1f2937 100%);
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+    letter-spacing: 2px;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+input {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border: 2px solid #9ca3af;
+    border-radius: 6px;
+    background-color: #111827;
+    color: white;
+    margin-bottom: 20px;
+    outline: none;
+    text-align: center;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: #ffffff;
+}
+
+button {
+    padding: 14px 28px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: #ffffff;
+    color: #111827;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: #e5e7eb;
+    transform: translateY(-2px);
+}
+
+/* Mänguvaate paigutus */
+#game-screen {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.canvas-container {
+    width: 500px;
+    height: 600px;
+    background-color: #030712;
+}
+
+canvas {
+    display: block;
+    background-color: #030712;
+}
+
+/* Külgriba neutraalne stiil */
+.sidebar {
+    width: 300px;
+    height: 100%;
+    background-color: #111827;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid #374151;
+}
+
+.sidebar h2 {
+    font-size: 1.3rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #374151;
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    background-color: #1f2937;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: #9ca3af;
+    border: 1px solid #374151;
+}
+
+.stat-box span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    display: block;
+    margin-top: 2px;
+}
+
+/* --- SAAVUTUSTE SEADED JA PARANDUSED --- */
+.achievements {
+    margin-top: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; 
+    padding-right: 5px;
+}
+
+/* Kerimisriba (scrollbar) stiil */
+.achievements::-webkit-scrollbar {
+    width: 4px;
+}
+.achievements::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 4px;
+}
+
+.achievements h3 {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.achievements ul {
+    list-style: none;
+}
+
+.achievements li {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+/* Kui saavutus on lukus */
+.locked {
+    background-color: #1f2937;
+    color: #4b5563;
+    text-decoration: line-through;
+    border-color: #374151;
+}
+
+/* KUI SAAVUTUS SAADA KÄTTE - ERINEVAD VÄRVID */
+.unlocked.ach-blue {
+    background-color: #1e3a8a;
+    color: #93c5fd;
+    border-color: #3b82f6;
+    font-weight: bold;
+    animation: pop 0.4s ease;
+}
+
+.unlocked.ach-purple {
+    background-color: #581c87;
+    color: #e9d5ff;
+    border-color: #a855f7;
+    font-weight: bold;
+    animation: pop 0.4s ease;
+}
+
+.unlocked.ach-green {
+    background-color: #064e3b;
+    color: #a7f3d0;
+    border-color: #10b981;
+    font-weight: bold;
+    animation: pop 0.4s ease;
+}
+
+.unlocked.ach-orange {
+    background-color: #7c2d12;
+    color: #ffedd5;
+    border-color: #f97316;
+    font-weight: bold;
+    animation: pop 0.4s ease;
+}
+
+.unlocked.ach-yellow {
+    background-color: #713f12;
+    color: #fef08a;
+    border-color: #eab308;
+    font-weight: bold;
+    animation: pop 0.4s ease;
+}
+
+.unlocked.ach-cyan {
+    background-color: #164e63;
+    color: #cffafe;
+    border-color: #06b6d4;
+    font-weight: bold;
+    animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* --- MÄNG LÄBI VAADE --- */
+.game-over-title {
+    color: #ffffff;
+    font-size: 3.5rem;
+}
+
+.final-score-box {
+    background-color: #1f2937;
+    padding: 20px 40px;
+    border-radius: 8px;
+    margin: 25px;
+    font-size: 1.2rem;
+    border: 1px solid #374151;
+}
+
+.final-score-box strong {
+    color: #ffffff;
+}
